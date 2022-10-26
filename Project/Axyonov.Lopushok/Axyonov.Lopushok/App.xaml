@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Axyonov.Lopushok"
              StartupUri="Presentation/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="ColorPrimary">#fff</SolidColorBrush>
+            <SolidColorBrush x:Key="ColorSecondary">#cefff9</SolidColorBrush>
+            <SolidColorBrush x:Key="ColorAccent">#00cc76</SolidColorBrush>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
