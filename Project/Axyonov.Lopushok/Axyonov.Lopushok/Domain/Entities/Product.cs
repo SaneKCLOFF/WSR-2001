@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text;
 
 namespace Axyonov.Lopushok.Domain.Entities
 {
@@ -58,7 +59,20 @@ namespace Axyonov.Lopushok.Domain.Entities
         [NotMapped]
         public string FullMaterials
         {
-            get;
+            get
+            {
+                if (ProductMaterials.Count()==0)
+                {
+                    return "Отсутсвуют";
+                }
+                StringBuilder materialsString = new();
+                foreach (var material in ProductMaterials)
+                {
+                    materialsString.Append($"{material.Material.Title}, ");
+                }
+                materialsString.Remove(materialsString.Length-2,2);
+                return materialsString.ToString();
+            }
         }
         [NotMapped]
         public decimal TotalCost
