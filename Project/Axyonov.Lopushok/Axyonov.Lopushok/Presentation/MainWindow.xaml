@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
         xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow1" Height="450" Width="800"
+        Title="ООО &quot;Лопушок&quot;" Height="450" Width="800"
         Icon="/Resources/Icon.ico"
         Background="{StaticResource ColorPrimary}"
         FontFamily="Gabriola"
@@ -35,20 +35,30 @@
                            Width="40"
                            Height="40"
                            Margin="5"/>
-                    <TextBox Height="40"
-                             Width="300"
-                             Margin="5"/>
+                    <Border CornerRadius="10"
+                            Height="40"
+                            Width="300"
+                            Margin="5"
+                            BorderThickness="2"
+                            BorderBrush="{StaticResource ColorAccent}">
+                        <TextBox Text="{Binding Search}"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 HorizontalContentAlignment="Center"
+                                 Margin="8,0,8,0"/>
+                    </Border>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="1"
                             HorizontalAlignment="Right">
                     <ComboBox Height="40"
-                              Width="100"
+                              Width="150"
                               Margin="5"
                               ItemsSource="{Binding SorterItemsList}"
-                              SelectedItem="{Binding SelectedSorter}"/>
+                              SelectedItem="{Binding SelectedSorter}">
+                    </ComboBox>
                     <ComboBox Height="40"
-                              Width="100"
+                              Width="150"
                               Margin="5"
                               ItemsSource="{Binding FiltherItemsList}"
                               SelectedItem="{Binding SelectedFilter}"/>
@@ -57,7 +67,16 @@
         </Border>
         <ListView ItemsSource="{Binding Products}"
                   Grid.Row="1"
-                  Background="Transparent">
+                  Background="Transparent"
+                  Name="TableList">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить"
+                              Command="{Binding OpenAddShelfWindowCommand}"/>
+                    <MenuItem Header="Редактировать"/>
+                    <MenuItem Header="Удалить"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">
@@ -67,7 +86,7 @@
                                     Margin="5"
                                     Background="Transparent"
                                     BorderBrush="{StaticResource ColorAccent}"
-                                    BorderThickness="1"
+                                    BorderThickness="2"
                                     CornerRadius="10">
                                     <Grid
                                         Height="120">
