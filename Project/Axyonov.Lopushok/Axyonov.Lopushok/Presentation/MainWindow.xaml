@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
         xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="ООО &quot;Лопушок&quot;" Height="450" Width="800"
+        Title="ООО &quot;Лопушок&quot;" MinHeight="450" MinWidth="800"
         Icon="/Resources/Icon.ico"
         Background="{StaticResource ColorPrimary}"
         FontFamily="Gabriola"
@@ -101,7 +101,7 @@
                                                Stretch="Uniform"/>
                                         <StackPanel Grid.Column="1"
                                                     Orientation="Vertical">
-                                            <TextBlock Text="{Binding Title}"/>
+                                            <TextBlock Text="{Binding FullTitle}"/>
                                             <TextBlock Text="{Binding ArticleNumber}"/>
                                             <TextBlock Text="{Binding FullMaterials, StringFormat=Материалы: {0}}"/>
                                         </StackPanel>

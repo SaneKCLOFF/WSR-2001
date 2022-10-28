@@ -161,20 +161,39 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
         private List<Product> FilthProducts(List<Product> lProducts, string value)
         {
             List<Product> FilthList = new();
-            if (value == "Без фильтров")
+            
+            if (value == "Без фильтров" && ((Search != null || Search != string.Empty) && SelectedSorter != "Без сортировки")) //search, sort
+            {
+                FilthList = SearchProducts(SortProducts(lProducts, SelectedSorter), Search);
+            }
+            else if (value == "Без фильтров" && ((Search == null || Search == string.Empty) && SelectedSorter != "Без сортировки")) //sort
+            {
+                FilthList = SortProducts(lProducts, SelectedSorter);
+            }
+            else if (value == "Без фильтров" && ((Search != null || Search != string.Empty) && SelectedSorter == "Без сортировки")) //search
+            {
+                FilthList = SearchProducts(lProducts, Search);
+            }
+            else if (value == "Без фильтров") //no filther
             {
                 FilthList = lProducts;
             }
-            else if (value == "Без фильтров" && (Search != null || Search != string.Empty))
+            else if ((Search != null || Search != string.Empty) && SelectedSorter != "Без сортировки") //filther, search, sort
             {
-                FilthList = SearchProducts(FilthList, Search);
+                FilthList = lProducts.Where(t => t.ProductType.Title == value).ToList();
+                FilthList = SearchProducts(SortProducts(FilthList,SelectedSorter), Search);
             }
-            else if (Search != null || Search != string.Empty)
+            else if ((Search == null || Search == string.Empty) && SelectedSorter != "Без сортировки") //filther, sort
+            {
+                FilthList = lProducts.Where(t => t.ProductType.Title == value).ToList();
+                FilthList = SortProducts(FilthList, SelectedSorter);
+            }
+            else if ((Search != null || Search != string.Empty) && SelectedSorter == "Без сортировки") //filther, search
             {
                 FilthList = lProducts.Where(t => t.ProductType.Title == value).ToList();
                 FilthList = SearchProducts(FilthList, Search);
             }
-            else
+            else //filther
             {
                 FilthList = lProducts.Where(t => t.ProductType.Title == value).ToList();
             }

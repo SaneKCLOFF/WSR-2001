@@ -17,16 +17,12 @@ namespace Axyonov.Lopushok.Domain.Entities
             ProductSales = new HashSet<ProductSale>();
         }
         private string? _image;
-        private string _title;
         private decimal _minCostForAgent;
         public int Id { get; set; }
-        public string Title
+        public string Title { get; set; }
+        public string FullTitle
         {
-            get { return $"{ProductType.Title} | {_title}"; }
-            set
-            {
-                _title = value;
-            }
+            get { return $"{ProductType.Title} | {Title}"; }
         }
         public int? ProductTypeId { get; set; }
         public string ArticleNumber { get; set; } = null!;
