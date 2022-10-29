@@ -17,9 +17,9 @@ namespace Axyonov.Lopushok.Presentation
     /// <summary>
     /// Логика взаимодействия для AddShelfWindow.xaml
     /// </summary>
-    public partial class AddShelfWindow : Window
+    public partial class AddProductWindow : Window
     {
-        public AddShelfWindow()
+        public AddProductWindow()
         {
             InitializeComponent();
         }

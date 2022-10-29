@@ -40,12 +40,14 @@
                             Width="300"
                             Margin="5"
                             BorderThickness="2"
-                            BorderBrush="{StaticResource ColorAccent}">
-                        <TextBox Text="{Binding Search}"
+                            BorderBrush="{StaticResource ColorSecondary}"
+                            Name="TextBorder">
+                        <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"
                                  Background="Transparent"
                                  BorderThickness="0"
                                  HorizontalContentAlignment="Center"
-                                 Margin="8,0,8,0"/>
+                                 Margin="8,0,8,0">
+                        </TextBox>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -68,7 +70,9 @@
         <ListView ItemsSource="{Binding Products}"
                   Grid.Row="1"
                   Background="Transparent"
-                  Name="TableList">
+                  Name="TableList"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить"
@@ -83,9 +87,10 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border
+                                    x:Name="Border"
                                     Margin="5"
                                     Background="Transparent"
-                                    BorderBrush="{StaticResource ColorAccent}"
+                                    BorderBrush="{StaticResource ColorSecondary}"
                                     BorderThickness="2"
                                     CornerRadius="10">
                                     <Grid
@@ -111,9 +116,14 @@
                                                    Margin="0,0,10,0"/>
                                     </Grid>
                                 </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource ColorAccent}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
-                    </Setter>  
+                    </Setter>
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>

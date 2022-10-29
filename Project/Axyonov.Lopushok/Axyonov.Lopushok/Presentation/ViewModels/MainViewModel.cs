@@ -78,7 +78,7 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
             #endregion
         }
         #region Сортировка, фильтрация, поиск
-        private List<Product> GetProducts()
+        public List<Product> GetProducts()
         {
             using (ApplicationDbContext context = new())
             {
@@ -222,15 +222,15 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
             {
                 return _openAddShelfWindowCommand ?? new RelayCommand(obj =>
                 {
-                    OpenAddShelfWindow();
+                    OpenAddProductWindow();
                 });
             }
         }
-        private void OpenAddShelfWindow()
+        private void OpenAddProductWindow()
         {
-            AddShelfWindow addShelfWindow = new AddShelfWindow();
-            addShelfWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            addShelfWindow.ShowDialog();
+            AddProductWindow addProductWindow = new AddProductWindow();
+            addProductWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            addProductWindow.ShowDialog();
         }
         #endregion
     }
