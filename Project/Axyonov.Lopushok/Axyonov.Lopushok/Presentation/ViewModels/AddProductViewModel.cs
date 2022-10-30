@@ -12,6 +12,8 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
     internal class AddProductViewModel:ViewModelBase
     {
         #region Fields
+        public delegate void AddProduct1();
+        event AddProduct1 Add;
         public List<ProductType> ProductTypeList { get; }
         public string SelectedTitle { get; set; }
         public ProductType SelectedProductType { get; set; }
@@ -31,6 +33,11 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
             {
                 ProductTypeList = context.ProductTypes.ToList();
             }
+            Add += Message;
+        }
+        public void Message()
+        {
+            MessageBox.Show("лох", "цветочный");
         }
 
         public RelayCommand AddProduct
@@ -57,9 +64,9 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
                             };
                             context.Products.Add(newProduct);
                             context.SaveChanges();
-                            MessageBox.Show($"Продукт '{SelectedTitle}' добавлен!");
+                            MessageBox.Show($"Продукт '{SelectedTitle}' добавлен!","Успешно");
                         }
-                        else MessageBox.Show($"Продукт {SelectedTitle} уже существует!");
+                        else MessageBox.Show($"Продукт {SelectedTitle} уже существует!", "Ошибка");
                     }
                 });
             }

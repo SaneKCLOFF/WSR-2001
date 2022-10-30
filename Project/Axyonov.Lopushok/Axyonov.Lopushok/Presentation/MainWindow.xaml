@@ -75,8 +75,13 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Добавить"
+                    <MenuItem Header="Добавить продукт"
                               Command="{Binding OpenAddShelfWindowCommand}"/>
+                    <MenuItem Header="Материал">
+                        <MenuItem Header="Добавить"
+                                  />
+                        <MenuItem Header="Создать"/>
+                    </MenuItem>
                     <MenuItem Header="Редактировать"/>
                     <MenuItem Header="Удалить"/>
                 </ContextMenu>
