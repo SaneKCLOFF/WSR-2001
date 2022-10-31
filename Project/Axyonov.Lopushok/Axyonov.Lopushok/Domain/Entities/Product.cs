@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text;
 
 namespace Axyonov.Lopushok.Domain.Entities
 {
@@ -21,7 +22,7 @@ namespace Axyonov.Lopushok.Domain.Entities
         public int Id { get; set; }
         public string Title
         {
-            get { return $"{ProductType.Title} | {_title}"; }
+            get { return _title; }
             set
             {
                 _title = value;
@@ -55,10 +56,32 @@ namespace Axyonov.Lopushok.Domain.Entities
         public virtual ICollection<ProductCostHistory> ProductCostHistories { get; set; }
         public virtual ICollection<ProductMaterial> ProductMaterials { get; set; }
         public virtual ICollection<ProductSale> ProductSales { get; set; }
+
+        [NotMapped]
+        public string Fulltitle
+        {
+            get
+            {
+                return $"{ProductType.Title} | {Title}";
+            }
+        }
         [NotMapped]
         public string FullMaterials
         {
-            get;
+            get 
+            {
+                if (ProductMaterials.Count()==0)
+                {
+                    return "отсутсвуют";
+                }
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (var material in ProductMaterials)
+                {
+                    stringBuilder.Append($"{material.Material.Title}, ");
+                }
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+                return stringBuilder.ToString();
+            }
         }
         [NotMapped]
         public decimal TotalCost

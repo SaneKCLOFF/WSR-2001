@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
         xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow1" Height="450" Width="800"
+        Title="ООО &quot;Лопушок&quot;" Height="450" Width="800"
         Icon="/Resources/Icon.ico"
         Background="{StaticResource ColorPrimary}"
         FontFamily="Gabriola"
@@ -35,25 +35,40 @@
                            Width="40"
                            Height="40"
                            Margin="5"/>
-                    <TextBox Height="40"
-                             Width="300"
-                             Margin="5"/>
+                    <Border
+                        BorderBrush="{StaticResource ColorAccent}"
+                        BorderThickness="2"
+                        Width="300"
+                        Height="40"
+                        Margin="5"
+                        CornerRadius="10">
+                        <TextBox BorderThickness="0"
+                                 Background="Transparent"
+                                 Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="5,1,5,1"/>
+                    </Border>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="1"
                             HorizontalAlignment="Right">
                     <ComboBox Height="40"
-                              Width="100"
-                              Margin="5"/>
+                              Width="150"
+                              Margin="5"
+                              SelectedItem="{Binding SortValue, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding ValuesToSort}"/>
                     <ComboBox Height="40"
-                              Width="100"
-                              Margin="5"/>
+                              Width="150"
+                              Margin="5"
+                              SelectedItem="{Binding FilterValue, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding ValuesToFilther}"/>
                 </StackPanel>
             </Grid>
         </Border>
-        <ListView ItemsSource="{Binding Products}"
+        <ListView ItemsSource="{Binding DisplayingProducts}"
                   Grid.Row="1"
-                  Background="Transparent">
+                  Background="Transparent"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">
@@ -78,12 +93,12 @@
                                                Stretch="Uniform"/>
                                         <StackPanel Grid.Column="1"
                                                     Orientation="Vertical">
-                                            <TextBlock Text="{Binding Title}"/>
+                                            <TextBlock Text="{Binding Fulltitle}"/>
                                             <TextBlock Text="{Binding ArticleNumber}"/>
-                                            <TextBlock Text="{Binding }"/>
+                                            <TextBlock Text="{Binding FullMaterials, StringFormat= Материалы: {0}}"/>
                                         </StackPanel>
                                         <TextBlock Grid.Column="2"
-                                                   Text="{Binding TotalCost, StringFormat={}{0:C}}"
+                                                   Text="{Binding TotalCost}"
                                                    HorizontalAlignment="Right"
                                                    Margin="0,0,10,0"/>
                                     </Grid>
