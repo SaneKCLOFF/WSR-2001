@@ -37,7 +37,7 @@
                            Margin="5"/>
                     <Border
                         BorderBrush="{StaticResource ColorAccent}"
-                        BorderThickness="2"
+                        BorderThickness="3"
                         Width="300"
                         Height="40"
                         Margin="5"
@@ -74,11 +74,11 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border
+                                <Border Name="Border"
                                     Margin="5"
                                     Background="Transparent"
                                     BorderBrush="{StaticResource ColorAccent}"
-                                    BorderThickness="1"
+                                    BorderThickness="3"
                                     CornerRadius="10">
                                     <Grid
                                         Height="120">
@@ -103,6 +103,13 @@
                                                    Margin="0,0,10,0"/>
                                     </Grid>
                                 </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" TargetName="Border" Value="{StaticResource ColorSecondary}"/>
+                                        <Setter Property="Opacity" TargetName="Border" Value="0.85"/>
+                                        <Setter Property="FontWeight" Value="ExtraBold"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>  

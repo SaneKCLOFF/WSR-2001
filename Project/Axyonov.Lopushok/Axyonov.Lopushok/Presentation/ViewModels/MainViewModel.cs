@@ -13,6 +13,7 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
 {
     internal class MainViewModel : ViewModelBase
     {
+        #region fields
         private List<Product> _products;
         private List<Product> _displayingProducts;
         private string _searchValue;
@@ -20,7 +21,8 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
         private string _filterValue;
         private List<ProductType> _productTypes;
         private List<string> _valuesToFilther;
-
+        #endregion
+        #region properties
         public List<ProductType> ProductTypes
         {
             get => _productTypes;
@@ -70,7 +72,7 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
                 Set(ref _displayingProducts, value, nameof(DisplayingProducts));
             }
         }
-
+        #endregion
         public MainViewModel()
         {
             ValuesToFilther = new List<string>();
@@ -94,7 +96,7 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
             }
             _displayingProducts=new List<Product>(_products);
         }
-
+        #region Sort, Filter, Search
         public void DisplayProducts()
         {
             DisplayingProducts = Sort(Search(Filter(_products)));
@@ -128,6 +130,7 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
             }
             return products.Where(p => p.Fulltitle.ToLower().Contains(SearchValue.ToLower())).ToList();
         }
+        #endregion
     }
 
 }
