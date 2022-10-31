@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
         xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="ООО &quot;Лопушок&quot;" Height="450" Width="800"
+        Title="ООО &quot;Лопушок&quot;" Height="600" Width="800"
         Icon="/Resources/Icon.ico"
         Background="{StaticResource ColorPrimary}"
         FontFamily="Gabriola"
@@ -65,10 +65,12 @@
             </Grid>
         </Border>
         <ListView ItemsSource="{Binding DisplayingProducts}"
+                  SelectedItem="{Binding SelectedProduct}"
                   Grid.Row="1"
                   Background="Transparent"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">

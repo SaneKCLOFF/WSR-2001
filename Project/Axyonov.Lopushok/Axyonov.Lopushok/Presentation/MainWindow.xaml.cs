@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axyonov.Lopushok.Presentation.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace Axyonov.Lopushok.Presentation
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = (MainViewModel)DataContext;
+        }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (_viewModel.SelectedProduct!=null)
+            {
+                var productWindow = new ProductWindow(_viewModel.SelectedProduct,_viewModel.DisplayingProducts,_viewModel.ProductTypes);
+                productWindow.ShowDialog();
+            }
         }
     }
 }

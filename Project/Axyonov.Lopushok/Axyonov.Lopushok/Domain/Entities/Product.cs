@@ -34,8 +34,8 @@ namespace Axyonov.Lopushok.Domain.Entities
         public string? Image
         {
             get => (_image == string.Empty) || (_image == null)
-                ? $"..\\Resources\\picture.png"
-                : $"..\\Resources{_image.Replace("jpg", "jpeg")}";
+                ? $"\\Resources\\picture.png"
+                : $"\\Resources{_image.Replace("jpg", "jpeg")}";
             set => _image = value;
         }
         public int? ProductionPersonCount { get; set; }

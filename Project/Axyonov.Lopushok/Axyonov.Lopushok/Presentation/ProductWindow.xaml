@@ -1,0 +1,40 @@
+﻿<Window x:Class="Axyonov.Lopushok.Presentation.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
+        xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
+        mc:Ignorable="d"
+        Title="Информация о продукте" Height="600" Width="300"
+        FontSize="16" FontFamily="Gabriola">
+    <Window.DataContext>
+        <viewModel:ProductWindowViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <TextBlock Text="Название"/>
+        <TextBox Text="{Binding SelectedProduct.Title, UpdateSourceTrigger=PropertyChanged}"
+                 MaxLength="100"/>
+        <TextBlock Text="Тип"/>
+        <ComboBox ItemsSource="{Binding ProductTypes}"
+                  DisplayMemberPath="Title"
+                  SelectedItem="{Binding SelectedProductType, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Артикул"/>
+        <TextBox MaxLength="10"
+                 Text="{Binding SelectedProduct.ArticleNumber, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Описание"/>
+        <TextBox Text="{Binding SelectedProduct.Description, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Изображение"/>
+        <TextBox MaxLength="100"
+                 Text="{Binding SelectedProduct.Image, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Людей для производства"/>
+        <TextBox Text="{Binding SelectedProduct.ProductionPersonCount, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Номер цеха"/>
+        <TextBox Text="{Binding SelectedProduct.ProductionWorkshopNumber, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Минимальная цена для агента"/>
+        <TextBox Text="{Binding SelectedProduct.MinCostForAgent, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Name="btnSave"
+                Content="Save"
+                Click="btnSave_Click"/>
+    </StackPanel>
+</Window>

@@ -21,8 +21,9 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
         private string _filterValue;
         private List<ProductType> _productTypes;
         private List<string> _valuesToFilther;
+        private Product _selectedProduct;
         #endregion
-        #region properties
+        #region properties 
         public List<ProductType> ProductTypes
         {
             get => _productTypes;
@@ -72,6 +73,12 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
                 Set(ref _displayingProducts, value, nameof(DisplayingProducts));
             }
         }
+
+        public Product SelectedProduct 
+        { 
+            get => _selectedProduct; 
+            set=> Set(ref _selectedProduct, value, nameof(SelectedProduct));
+        }
         #endregion
         public MainViewModel()
         {
@@ -103,7 +110,6 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
         }
         private List<Product> Sort(List<Product> products)
         {
-            //"Без сортировки", "По названию(возр.)", "По названию(убыв.)","По стоимости(возр.)","По стоимости(убыв.)"
             if (SortValue == ValuesToSort[1])
                 return products.OrderBy(p => p.Title).ToList();
             else if (SortValue == ValuesToSort[2])
