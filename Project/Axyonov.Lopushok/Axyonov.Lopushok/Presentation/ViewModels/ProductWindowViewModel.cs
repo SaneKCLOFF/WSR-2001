@@ -19,7 +19,11 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
         public Product SelectedProduct 
         { 
             get => _selectedProduct;
-            set => Set(ref _selectedProduct, value, nameof(SelectedProduct)); 
+            set 
+            {
+                Set(ref _selectedProduct, value, nameof(SelectedProduct));
+                ProductMaterials = SelectedProduct.ProductMaterials.ToList();
+            } 
         }
         public List<Product> Products 
         { 
@@ -34,11 +38,7 @@ namespace Axyonov.Lopushok.Presentation.ViewModels
         public List<ProductMaterial> ProductMaterials 
         { 
             get => _productMaterials; 
-            set
-            {
-                Set(ref _productMaterials, value, nameof(ProductMaterials));
-                ProductMaterials = SelectedProduct.ProductMaterials.ToList();
-            }
+            set => Set(ref _productMaterials, value, nameof(ProductMaterials));
         }
         public ProductType SelectedProductType 
         { 
