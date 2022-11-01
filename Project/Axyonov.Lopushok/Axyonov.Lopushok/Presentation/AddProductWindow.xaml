@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
         xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="AddProductWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        Title="AddProductWindow" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        FontSize="20"
+        FontFamily="Gabriola">
     <Window.DataContext>
         <viewModel:AddProductWindowViewModel/>
     </Window.DataContext>
@@ -16,30 +18,92 @@
             <RowDefinition/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Text="Название"/>
-            <TextBox Text="{Binding AddTitle,UpdateSourceTrigger=PropertyChanged}"
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"
+                        Margin="10">
+                <TextBlock Text="Название"/>
+                <TextBox Text="{Binding AddTitle,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="100"/>
-            <TextBlock Text="Тип"/>
-            <ComboBox SelectedItem="{Binding SelectedProductType, UpdateSourceTrigger=PropertyChanged}"
+                <TextBlock Text="Тип"/>
+                <ComboBox SelectedItem="{Binding SelectedProductType, UpdateSourceTrigger=PropertyChanged}"
                       ItemsSource="{Binding ProductTypes}"
                       DisplayMemberPath="Title"/>
-            <TextBlock Text="Артикул"/>
-            <TextBox Text="{Binding AddArticle,UpdateSourceTrigger=PropertyChanged}"
+                <TextBlock Text="Артикул"/>
+                <TextBox Text="{Binding AddArticle,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="10"/>
-            <TextBlock Text="Описание"/>
-            <TextBox Text="{Binding AddDescription,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Изображение"/>
-            <TextBox Text="{Binding AddImage,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Сотрудников для производства"/>
-            <TextBox Text="{Binding AddProductionPersonCount,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Номер цеха"/>
-            <TextBox Text="{Binding AddProductionWorkshopNumber,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Минимальная цена для агента"/>
-            <TextBox Text="{Binding AddMinCostForAgent,UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
+                <TextBlock Text="Описание"/>
+                <TextBox Text="{Binding AddDescription,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Изображение"/>
+                <TextBox Text="{Binding AddImage,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Сотрудников для производства"/>
+                <TextBox Text="{Binding AddProductionPersonCount,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Номер цеха"/>
+                <TextBox Text="{Binding AddProductionWorkshopNumber,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Минимальная цена для агента"/>
+                <TextBox Text="{Binding AddMinCostForAgent,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <ListView Grid.Row="0"
+                          Margin="10"
+                          BorderBrush="{StaticResource ColorAccent}"
+                          BorderThickness="2"
+                          ItemsSource="{Binding Materials}"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Height="40"
+                                Width="auto"
+                                CornerRadius="10"
+                                BorderBrush="{StaticResource ColorAccent}"
+                                BorderThickness="2"
+                                Background="{StaticResource ColorSecondary}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"
+                                       Source="{Binding Image}"
+                                       Margin="5,5"
+                                       Stretch="Uniform"/>
+                                    <TextBlock Grid.Column="1"
+                                           Margin="5,0"
+                                           Text="{Binding FullTitle}"/>
+                                    <TextBlock Grid.Column="2"
+                                           Margin="5,0"
+                                           Text="{Binding Cost, StringFormat=Цена {0}}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Margin="10,5"
+                            Content="Добавить материал"/>
+                    <Button Grid.Column="1"
+                            Margin="10,5"
+                            Content="Удалить материал"/>
+                </Grid>
+            </Grid>
+        </Grid>
         <Button Grid.Row="1"
                 Name="btnAddProduct"
-                Click="btnAddProduct_Click"/>
+                Click="btnAddProduct_Click"
+                Content="Добавить продукт"
+                Margin="100,20"/>
     </Grid>
 </Window>

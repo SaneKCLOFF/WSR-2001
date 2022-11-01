@@ -22,7 +22,7 @@ namespace Axyonov.Lopushok.Presentation
     public partial class AddProductWindow : Window
     {
         private AddProductWindowViewModel _viewModel;
-        public AddProductWindow(List<ProductType> productTypes)
+        public AddProductWindow(List<ProductType> productTypes) // ДОБАВЛЕНИЕ
         {
             InitializeComponent();
             _viewModel = (AddProductWindowViewModel)DataContext;

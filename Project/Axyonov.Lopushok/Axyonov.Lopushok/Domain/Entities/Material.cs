@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Axyonov.Lopushok.Domain.Entities
 {
     public partial class Material
     {
+        private string? _image;
+
         public Material()
         {
             MaterialCountHistories = new HashSet<MaterialCountHistory>();
@@ -20,7 +23,11 @@ namespace Axyonov.Lopushok.Domain.Entities
         public double MinCount { get; set; }
         public string? Description { get; set; }
         public decimal Cost { get; set; }
-        public string? Image { get; set; }
+        public string? Image
+        {
+            get => (_image == string.Empty || _image == null) ? @"\Resources\picture.png" : @$"\Resources{_image}";
+            set => _image = value;
+        }
         public int MaterialTypeId { get; set; }
 
         public virtual MaterialType MaterialType { get; set; } = null!;
@@ -28,5 +35,13 @@ namespace Axyonov.Lopushok.Domain.Entities
         public virtual ICollection<ProductMaterial> ProductMaterials { get; set; }
 
         public virtual ICollection<Supplier> Suppliers { get; set; }
+        [NotMapped]
+        public string FullTitle
+        {
+            get
+            {
+                return $"{MaterialType.Title} | {Title}";
+            }
+        }
     }
 }

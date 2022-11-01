@@ -27,7 +27,6 @@ namespace Axyonov.Lopushok.Presentation
             InitializeComponent();
             _viewModel = (MainViewModel)DataContext;
         }
-
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var addProductWindow =  new AddProductWindow(_viewModel.ProductTypes);

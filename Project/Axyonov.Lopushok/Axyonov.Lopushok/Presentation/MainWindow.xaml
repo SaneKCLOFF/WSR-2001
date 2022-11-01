@@ -73,8 +73,10 @@
                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Редактировать"/>
-                    <MenuItem Header="Удалить"/>
+                    <MenuItem Header="Редактировать"
+                              Name="menuEdit"/>
+                    <MenuItem Header="Удалить"
+                              Name="menuDelete"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.ItemContainerStyle>
