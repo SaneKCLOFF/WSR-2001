@@ -62,7 +62,8 @@ namespace Axyonov.Lopushok.Domain.Entities
         {
             get
             {
-                return $"{ProductType.Title} | {Title}";
+                var productTypeTitle = ProductType==null ? "Тип" : ProductType.Title;
+                return $"{productTypeTitle} | {Title}";
             }
         }
         [NotMapped]

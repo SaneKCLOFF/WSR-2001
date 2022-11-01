@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
         xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="ООО &quot;Лопушок&quot;" Height="800" Width="800"
+        Title="ООО &quot;Лопушок&quot;" Height="700" Width="1000"
         Icon="/Resources/Icon.ico"
         Background="{StaticResource ColorPrimary}"
         FontFamily="Gabriola"
-        FontSize="20">
+        FontSize="20"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
@@ -18,7 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
         <Image Source="/Resources/Logo.png"
                Grid.RowSpan="3"
@@ -69,8 +70,13 @@
                   Grid.Row="1"
                   Background="Transparent"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                  MouseDoubleClick="ListView_MouseDoubleClick">
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактировать"/>
+                    <MenuItem Header="Удалить"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">
@@ -118,5 +124,14 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Name="btnAdd"
+                    Click="btnAdd_Click"/>
+        </Grid>
     </Grid>
 </Window>

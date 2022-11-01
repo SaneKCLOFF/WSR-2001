@@ -17,24 +17,21 @@ using System.Windows.Shapes;
 namespace Axyonov.Lopushok.Presentation
 {
     /// <summary>
-    /// Логика взаимодействия для ProductWindow.xaml
+    /// Логика взаимодействия для AddProductWindow.xaml
     /// </summary>
-    public partial class ProductWindow : Window
+    public partial class AddProductWindow : Window
     {
-        private ProductWindowViewModel _viewModel;
-        public ProductWindow(Product selectedProduct,List<Product> products,List<ProductType> productTypes)
+        private AddProductWindowViewModel _viewModel;
+        public AddProductWindow(List<ProductType> productTypes)
         {
             InitializeComponent();
-            _viewModel = (ProductWindowViewModel)DataContext;
-            _viewModel.SelectedProduct = selectedProduct;
-            _viewModel.Products = products;
+            _viewModel = (AddProductWindowViewModel)DataContext;
             _viewModel.ProductTypes = productTypes;
-            _viewModel.SelectedProductType = selectedProduct.ProductType; ;
         }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.SaveChanges();
-            Close();
+            _viewModel.AddProduct();
         }
     }
 }

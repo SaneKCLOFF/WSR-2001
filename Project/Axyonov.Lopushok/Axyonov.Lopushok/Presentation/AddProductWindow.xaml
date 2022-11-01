@@ -1,0 +1,45 @@
+﻿<Window x:Class="Axyonov.Lopushok.Presentation.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Axyonov.Lopushok.Presentation"
+        xmlns:viewModel="clr-namespace:Axyonov.Lopushok.Presentation.ViewModels"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModel:AddProductWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Название"/>
+            <TextBox Text="{Binding AddTitle,UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="100"/>
+            <TextBlock Text="Тип"/>
+            <ComboBox SelectedItem="{Binding SelectedProductType, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding ProductTypes}"
+                      DisplayMemberPath="Title"/>
+            <TextBlock Text="Артикул"/>
+            <TextBox Text="{Binding AddArticle,UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="10"/>
+            <TextBlock Text="Описание"/>
+            <TextBox Text="{Binding AddDescription,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Изображение"/>
+            <TextBox Text="{Binding AddImage,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Сотрудников для производства"/>
+            <TextBox Text="{Binding AddProductionPersonCount,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Номер цеха"/>
+            <TextBox Text="{Binding AddProductionWorkshopNumber,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Минимальная цена для агента"/>
+            <TextBox Text="{Binding AddMinCostForAgent,UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <Button Grid.Row="1"
+                Name="btnAddProduct"
+                Click="btnAddProduct_Click"/>
+    </Grid>
+</Window>

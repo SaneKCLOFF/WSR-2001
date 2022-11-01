@@ -28,13 +28,10 @@ namespace Axyonov.Lopushok.Presentation
             _viewModel = (MainViewModel)DataContext;
         }
 
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.SelectedProduct!=null)
-            {
-                var productWindow = new ProductWindow(_viewModel.SelectedProduct,_viewModel.DisplayingProducts,_viewModel.ProductTypes);
-                productWindow.ShowDialog();
-            }
+            var addProductWindow =  new AddProductWindow(_viewModel.ProductTypes);
+            addProductWindow.ShowDialog();
         }
     }
 }
